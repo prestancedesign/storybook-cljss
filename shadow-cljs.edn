@@ -1,0 +1,17 @@
+{:source-paths ["src"]
+ :dependencies [[binaryage/devtools "1.0.7"]
+                [nrepl "1.1.0"]
+                [reagent "1.2.0"]
+                [clj-commons/cljss "1.6.4"]]
+ :builds       {:app
+                {:target     :browser
+                 :output-dir "public/js"
+                 :asset-path "/js"
+                 :modules    {:app {:entries [storyvite.core]}}
+                 :devtools   {:before-load storyvite.core/clean
+                              :after-load storyvite.core/mount-root}}
+                :stories
+                {:target     :npm-module
+                 :ns-regexp  "-stories$"
+                 :output-dir "public/js/stories"}}
+ :dev-http     {3000 {:root "public"}}}
